@@ -1,0 +1,30 @@
+{
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "example-token",
+      "description": "The token for the MCP server",
+      "password": true
+    }
+  ],
+  "servers": {
+    "example-mcp-server": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        // IMPORTANT: Ensure this points to your GitHub repo
+        "github:Username/example-mcp-server"
+      ],
+      "env": {
+        "EXAMPLE_TOKEN": "${input:example-token}"
+      }
+    },
+    "modelcontextprotocol-docu-mcp": {
+      // Always include this to develop mcp-servers easier
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "github:DotNaos/modelcontextprotocol-docu-mcp", "--stdio"]
+    }
+  }
+}
